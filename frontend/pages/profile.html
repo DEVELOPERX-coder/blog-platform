@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile - Blog Platform</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <h1>BlogSpace</h1>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#" class="active">My Profile</a></li>
+            <li><a href="create-blog.html">Create Post</a></li>
+            <li><a href="#" id="nav-logout">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="profile">
+        <div class="profile-header">
+          <div class="profile-avatar">
+            <img
+              id="profile-image"
+              src="../assets/images/default-avatar.png"
+              alt="Profile picture"
+            />
+          </div>
+          <div class="profile-info">
+            <h2 id="profile-username">Username</h2>
+            <p id="profile-email">email@example.com</p>
+            <p id="profile-bio">Bio not set</p>
+            <button id="edit-profile-btn" class="btn">Edit Profile</button>
+          </div>
+        </div>
+
+        <div id="edit-profile-form" class="edit-profile-form hidden">
+          <h3>Edit Profile</h3>
+          <form id="profile-form">
+            <div class="form-group">
+              <label for="bio">Bio</label>
+              <textarea id="bio" name="bio" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="profile-image-url">Profile Image URL</label>
+              <input
+                type="url"
+                id="profile-image-url"
+                name="profile-image-url"
+              />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" id="cancel-edit" class="btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="profile-blogs">
+          <h3>My Blog Posts</h3>
+          <div id="user-blogs" class="blog-list">
+            <!-- User blogs will be dynamically inserted here -->
+            <div class="loading">Loading posts...</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 BlogSpace. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/blogs.js"></script>
+    <script src="../assets/js/profile.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Check authentication
+        if (!localStorage.getItem("token")) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Initialize profile page
+        initProfilePage();
+      });
+    </script>
+  </body>
+</html>

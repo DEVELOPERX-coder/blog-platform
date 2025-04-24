@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Platform</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <h1>BlogSpace</h1>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li>
+              <a href="#" id="nav-profile" class="auth-required hidden"
+                >My Profile</a
+              >
+            </li>
+            <li>
+              <a href="pages/create-blog.html" class="auth-required hidden"
+                >Create Post</a
+              >
+            </li>
+            <li>
+              <a
+                href="pages/login.html"
+                id="nav-login"
+                class="auth-not-required"
+                >Login</a
+              >
+            </li>
+            <li>
+              <a
+                href="pages/register.html"
+                id="nav-register"
+                class="auth-not-required"
+                >Register</a
+              >
+            </li>
+            <li>
+              <a href="#" id="nav-logout" class="auth-required hidden"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Welcome to BlogSpace</h1>
+        <p>Share your thoughts with the world</p>
+      </section>
+
+      <section class="blog-feed">
+        <h2>Recent Posts</h2>
+        <div id="blog-list" class="blog-list">
+          <!-- Blog posts will be dynamically inserted here -->
+          <div class="loading">Loading posts...</div>
+        </div>
+        <div class="pagination">
+          <button id="load-more">Load More</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 BlogSpace. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/blogs.js"></script>
+    <script src="assets/js/likes.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

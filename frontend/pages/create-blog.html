@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Blog Post - Blog Platform</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <h1>BlogSpace</h1>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+            <li><a href="#" class="active">Create Post</a></li>
+            <li><a href="#" id="nav-logout">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="blog-form">
+        <h2>Create a New Blog Post</h2>
+        <div id="error-message" class="error-message hidden"></div>
+        <form id="create-blog-form">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              required
+              minlength="5"
+              maxlength="255"
+            />
+          </div>
+          <div class="form-group">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" rows="10" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Publish</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 BlogSpace. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/blogs.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Check authentication
+        if (!localStorage.getItem("token")) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        // Setup create blog form
+        const createBlogForm = document.getElementById("create-blog-form");
+        const errorMessage = document.getElementById("error-message");
+
+        createBlogForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const title = document.getElementById("title").value;
+          const content = document.getElementById("content").value;
+
+          try {
+            const result = await createBlog(title, content);
+            if (result.success) {
+              window.location.href = "../index.html";
+            } else {
+              errorMessage.textContent = result.message;
+              errorMessage.classList.remove("hidden");
+            }
+          } catch (error) {
+            errorMessage.textContent =
+              error.message || "Failed to create blog post. Please try again.";
+            errorMessage.classList.remove("hidden");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
